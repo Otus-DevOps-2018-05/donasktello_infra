@@ -51,3 +51,25 @@ testapp_port = 9292
   --source-ranges='0.0.0.0/0' \
   --target-tags='puma-server'
   ```
+## Д/3 №5
+При сборке image обаза для инстанса с помощью сервиса Packer были проделаны шаги
+* Установлен и подвязан Packer для общения его с GCP
+* Создан базовый шаблон reddit-app c ruby и mongodb провижинерами
+* Создан файл variables.json и пример файла для параметризации образа
+* Свалидирован reddit-base image и запечён в GCP images
+* На основе этого image создан instance vm
+* Добавлены опции image_description, disk_size, disk_type, network, tags
+
+### Дополнительное задание: reddit-full на основе reddit-base 
+* Создан образ reddit-full на основе запечённого образа reddit-base с провижинерам деплоя
+### Дополнительное задание: shell-script для создания instance vm
+* Запускать через `gcloud CLI` 
+     ```
+    gcloud compute instances create reddit-app \
+    --boot-disk-size=10GB \
+    --image-family=reddit-full \
+    --image-project=infra-207412 \
+    --machine-type=g1-small \
+    --tags puma-server \
+    --restart-on-failure
+    ```
