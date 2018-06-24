@@ -28,6 +28,11 @@
       "type": "file",
       "source": "files/reddit.service",
       "destination": "/tmp/reddit.service"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/deploy.sh",
+      "execute_command": "sudo {{.Path}}"
     }
   ]
 }
