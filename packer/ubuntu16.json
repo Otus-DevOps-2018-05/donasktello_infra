@@ -3,22 +3,21 @@
     "project_id": null,
     "source_image_family": null,
     "machine_type": "f1-micro",
-    "disk_size": 10,
+    "disk_size": "10",
     "disk_type": "pd-standard",
-    "network": "reddit",
-    "tags": ["puma-server"]
+    "network": "default"
   },
   "builders": [
     {
       "type": "googlecompute",
       "project_id": "{{user `project_id`}}",
-      "dize_size": "{{user `disk_size`}}",
+      "disk_size": "{{user `disk_size`}}",
       "image_name": "reddit-base-{{timestamp}}",
       "image_family": "reddit-base",
       "image_description": "Base reddit image with ruby and mongodb preinstalled",
       "network": "{{user `network`}}",
       "source_image_family": "{{user `source_image_family`}}",
-      "tags": "{{user `tags`}}",
+      "tags": ["puma-server"],
       "zone": "europe-west1-b",
       "ssh_username": "appuser",
       "machine_type": "{{user `machine_type`}}"
