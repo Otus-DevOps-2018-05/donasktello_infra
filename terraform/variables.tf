@@ -14,7 +14,7 @@ variable zone {
 
 variable "count" {
   description = "Number of instances"
-  default = 2
+  default = 1
 }
 
 variable public_key_path {
