@@ -14,7 +14,7 @@ variable zone {
 
 variable "count" {
   description = "Number of instances"
-  default = 1
+  default     = 1
 }
 
 variable public_key_path {
@@ -31,10 +31,10 @@ variable disk_image {
 
 variable app_disk_image {
   description = "Disk image for reddit app"
-  default = "reddit-app-base"
+  default     = "reddit-app-base"
 }
 
 variable db_disk_image {
   description = "Disk image for reddit app"
-  default = "reddit-db-base"
+  default     = "reddit-db-base"
 }
