@@ -18,6 +18,9 @@ resource "google_compute_instance" "db" {
   network_interface {
     # сеть, к которой присоединить данный интерфейс
     network = "default"
+
+    # использовать ephemeral IP для доступа из Интернет
+    access_config { }
   }
 
   # метаданные
