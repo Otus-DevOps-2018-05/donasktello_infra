@@ -6,6 +6,7 @@ provider "google" {
 
 module "app" {
   source           = "../modules/app"
+  count            = "${var.count}"
   public_key_path  = "${var.public_key_path}"
   private_key_path = "${var.private_key_path}"
   zone             = "${var.zone}"

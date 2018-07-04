@@ -39,11 +39,3 @@ variable "source_ranges" {
   description = "Allowed IP adresses"
   default     = "0.0.0.0/0"
 }
-
-variable "bucket_name" {
-  description = "Name for storage bucket"
-}
-
-variable "environment" {
-  description = "Current environment"
-}
