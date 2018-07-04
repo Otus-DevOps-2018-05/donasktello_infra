@@ -20,7 +20,7 @@ resource "google_compute_instance" "db" {
     network = "default"
 
     # использовать ephemeral IP для доступа из Интернет
-    access_config { }
+    access_config {}
   }
 
   # метаданные

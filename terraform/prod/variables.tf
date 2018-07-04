@@ -25,10 +25,6 @@ variable private_key_path {
   description = "Path to the private key used for ssh access"
 }
 
-variable disk_image {
-  description = "Disk image"
-}
-
 variable app_disk_image {
   description = "Disk image for reddit app"
   default     = "reddit-app-base"
@@ -42,4 +38,12 @@ variable db_disk_image {
 variable "source_ranges" {
   description = "Allowed IP adresses"
   default     = "0.0.0.0/0"
+}
+
+variable "bucket_name" {
+  description = "Name for storage bucket"
+}
+
+variable "environment" {
+  description = "Current environment"
 }
