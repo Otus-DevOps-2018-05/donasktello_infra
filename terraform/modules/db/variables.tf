@@ -23,10 +23,10 @@ variable db_disk_image {
 
 variable "mongod_addr" {
   description = "MongoDB address"
-  default = "0.0.0.0"
+  default     = "0.0.0.0"
 }
 
 variable "mongod_port" {
   description = "MongoDB port"
-  default = "27017"
+  default     = "27017"
 }

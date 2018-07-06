@@ -23,5 +23,5 @@ variable app_disk_image {
 
 variable "db_addr" {
   description = "DB address"
-  default = "127.0.0.1:27017"
+  default     = "127.0.0.1:27017"
 }
