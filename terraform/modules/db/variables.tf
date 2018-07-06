@@ -20,3 +20,13 @@ variable db_disk_image {
   description = "Disk image for reddit app"
   default     = "reddit-db-base"
 }
+
+variable "mongod_addr" {
+  description = "MongoDB address"
+  default = "0.0.0.0"
+}
+
+variable "mongod_port" {
+  description = "MongoDB port"
+  default = "27017"
+}

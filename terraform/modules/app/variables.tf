@@ -20,3 +20,8 @@ variable app_disk_image {
   description = "Disk image for reddit app"
   default     = "reddit-app-base"
 }
+
+variable "db_addr" {
+  description = "DB address"
+  default = "127.0.0.1:27017"
+}
