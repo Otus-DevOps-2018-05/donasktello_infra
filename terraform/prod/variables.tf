@@ -42,4 +42,5 @@ variable "source_ranges" {
 
 variable "db_addr" {
   description = "DB address"
+  default = "127.0.0.1:27017"
 }
