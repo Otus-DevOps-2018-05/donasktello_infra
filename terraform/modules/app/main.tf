@@ -36,6 +36,15 @@ resource "google_compute_instance" "app" {
     agent       = false
     private_key = "${file(var.private_key_path)}"
   }
+
+  provisioner "file" {
+    source      = "${path.module}/files/puma.service"
+    destination = "/tmp/puma.service"
+  }
+
+  provisioner "remote-exec" {
+    script = "${path.module}/files/deploy.sh"
+  }
 }
 
 resource "google_compute_address" "app_ip" {
