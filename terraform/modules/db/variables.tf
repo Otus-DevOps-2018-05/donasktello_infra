@@ -21,12 +21,13 @@ variable db_disk_image {
   default     = "reddit-db-base"
 }
 
-variable "mongod_addr" {
-  description = "MongoDB address"
-  default     = "0.0.0.0"
-}
-
-variable "mongod_port" {
-  description = "MongoDB port"
-  default     = "27017"
-}
+//variable "mongod_addr" {
+//  description = "MongoDB address"
+//  default     = "0.0.0.0"
+//}
+//
+//variable "mongod_port" {
+//  description = "MongoDB port"
+//  default     = "27017"
+//}
+#TODO uncomment this block to return terraform with provisioners

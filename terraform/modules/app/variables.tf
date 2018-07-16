@@ -21,7 +21,8 @@ variable app_disk_image {
   default     = "reddit-app-base"
 }
 
-variable "db_addr" {
-  description = "DB address"
-  default     = "127.0.0.1:27017"
-}
+//variable "db_addr" {
+//  description = "DB address"
+//  default     = "127.0.0.1:27017"
+//}
+#TODO uncomment this block to return terraform with provisioners

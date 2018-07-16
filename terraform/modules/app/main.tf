@@ -1,10 +1,11 @@
-data "template_file" "puma_service" {
-  template = "${file("${path.module}/files/puma.service.tpl")}"
-
-  vars {
-    db_addr = "${var.db_addr}"
-  }
-}
+//data "template_file" "puma_service" {
+//  template = "${file("${path.module}/files/puma.service.tpl")}"
+//
+//  vars {
+//    db_addr = "${var.db_addr}"
+//  }
+//}
+#TODO uncomment this block to return terraform with provisioners
 
 resource "google_compute_instance" "app" {
   name         = "reddit-app${count.index}"
@@ -45,14 +46,14 @@ resource "google_compute_instance" "app" {
     private_key = "${file(var.private_key_path)}"
   }
 
-  provisioner "file" {
-    content     = "${data.template_file.puma_service.rendered}"
-    destination = "/tmp/puma.service"
-  }
-
-  provisioner "remote-exec" {
-    script = "${path.module}/files/deploy.sh"
-  }
+//  provisioner "file" {
+//    content     = "${data.template_file.puma_service.rendered}"
+//    destination = "/tmp/puma.service"
+//  }
+//  provisioner "remote-exec" {
+//    script = "${path.module}/files/deploy.sh"
+//  }
+#TODO uncomment this block to return terraform with provisioners
 }
 
 resource "google_compute_address" "app_ip" {
