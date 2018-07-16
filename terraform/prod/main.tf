@@ -10,7 +10,7 @@ module "app" {
   public_key_path  = "${var.public_key_path}"
   private_key_path = "${var.private_key_path}"
   zone             = "${var.zone}"
-  db_addr          = "${module.db.db_addr_int}"
+//  db_addr          = "${module.db.db_addr_int}"#TODO uncomment this block to return terraform with provisioners
   app_disk_image   = "${var.app_disk_image}"
 }
 
