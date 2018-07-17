@@ -3,14 +3,14 @@
     "hosts": ["35.233.92.152"]
   },
   "db": {
-    "hosts": ["130.211.105.128"]
+    "hosts": ["35.233.80.154"]
   },
   "_meta": {
     "hostvars": {
       "35.233.92.152": {
         "host_specific_var": "appserver"
       },
-      "130.211.105.128": {
+      "35.233.80.154": {
         "host_specific_var": "dbserver"
       }
     }
