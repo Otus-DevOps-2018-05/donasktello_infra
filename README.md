@@ -91,3 +91,82 @@ testapp_port = 9292
 ### Дополнительное задание **:
 Главная проблема, что это приложения с разной БД. Менее значительная проблема, что придётся отлеживать эквивалентность
 IaC обоих ресурсов.
+## Д/3 №7
+Для того, чтобы добиться модульности в терраформ проекте были проделаны следующие шаги:
+- Добавлен ресурс `google_compute_firewall` дефолтного правила firewall по ssh(Для того, чтобы вытащить правило создающееся по умолчанию применить
+  команду `terraform import resource_name resource_id`)
+- Создан ресурс `google_compute_address` внешнего IP c зависимостью app от этого ресурса
+- Главный шаблон декомпозирован на 2 инстанса: для апп и для бд
+- Для каждого из инстансов созданы отдельные образы пакера, бд и апп, соответственно
+- Для инстанса бд создан ресурс google_compute_firewall для доступа к МонгоДБ
+- Создан модуль ДБ со своими файлами(main, outputs, variable)
+- Создан модуль APP со своими файлами(main, outputs, variable)
+- Создан модуль VPC со своими файлами(main, outputs, variable)
+- Созданы два окружения(prod, stage) со своими параметрами к подгружаемым модулям
+- Написан код для создания storage bucket
+### Дополнительное задание *:
+- Настроено хранение стейт файла в файле backend.tf
+- При одновременном выполнении `terraform apply` с 2 мест выводится ошибка
+```
+Acquiring state lock. This may take a few moments...
+
+Error: Error locking state: Error acquiring the state lock: writing "gs://donasktello-reddit-app/prod/default.tflock" failed: googleapi: Error 412: Precondition Failed, conditionNotMet
+Lock Info:
+  ID:        1530896882840085
+  Path:      gs://donasktello-reddit-app/prod/default.tflock
+  Operation: OperationTypeApply
+  Who:       donasktello@Viacheslavs-MacBook-Pro.local
+  Version:   0.11.7
+  Created:   2018-07-06 17:08:02.649972895 +0000 UTC
+  Info:      
+
+
+Terraform acquires a state lock to protect the state from being written
+by multiple users at the same time. Please resolve the issue above and try
+again. For most commands, you can disable locking with the "-lock=false"
+flag, but this is not recommended.
+ 
+```
+### Дополнительное задание *:
+- Добавлены провижинеры для модулей дб и апп
+- У апп объявлена зависимость на инициализацию модуля дб, для получения адрес дб
+- Использован template provider `template_file` для параметризации системд юнитов.
+## Д/3 №8
+- Установлен Ansible
+- Создан и сконфигурирован inventory файл для управления инстансами дб и апп сервера
+- Создан и сконфигурирован ansible.cfg с опциями ssh ключа, пути к инвентори файлу и тд
+- inventory файл разбит на группы хостов
+- inventory адаптирован под yaml
+- Протестированы модули Ansible: ping, command, shell, systemd
+- Создан простой плейбук для копирования репозитория
+
+``` 
+Теперь выполните ansible app -m command -a 'rm -rf ~/reddit' и проверьте
+еще раз выполнение плейбука. Что изменилось и почему?
+```
+```
+Сначала мы использовали модуль command для удаления репозитория, потом запустили плейбук для клонирования,
+который изменил состояние инстанса и вернул информацию об этом. 
+```
+### Дополнительное задание *:
+- Создан inventory.json
+```
+  "app": {
+    "hosts": ["35.233.92.152"]
+  },
+  "db": {
+    "hosts": ["130.211.105.128"]
+  },
+  "_meta": {
+    "hostvars": {
+      "35.233.92.152": {
+        "host_specific_var": "appserver"
+      },
+      "130.211.105.128": {
+        "host_specific_var": "dbserver"
+      }
+    }
+  }
+} 
+```
+- Создан баш скрипт inventory для работы с inventory.json
