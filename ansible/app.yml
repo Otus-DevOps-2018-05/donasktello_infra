@@ -1,6 +1,6 @@
 ---
 - name: Configure Reddit app
-  hosts: app
+  hosts: tag_reddit-app
   become: true
   vars:
     db_host: 10.132.0.2
