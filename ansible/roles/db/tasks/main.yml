@@ -3,7 +3,7 @@
 
 - name: Show info about the env this host belongs to
   debug:
-    msg: "This host is in {{ env }} environment!!!"
+    msg: "This host is in {{ env }} db_host: {{ db_host }} mongo_bind_ip: {{ mongo_bind_ip }} environment!!!"
 
 - name: Change mongo config file
   template:
