@@ -1,11 +1,12 @@
-data "template_file" "mongod_conf" {
-  template = "${file("${path.module}/files/mongod.conf.tpl")}"
-
-  vars {
-    mongo_addr = "${var.mongod_addr}"
-    mongo_port = "${var.mongod_port}"
-  }
-}
+//data "template_file" "mongod_conf" {
+//  template = "${file("${path.module}/files/mongod.conf.tpl")}"
+//
+//  vars {
+//    mongo_addr = "${var.mongod_addr}"
+//    mongo_port = "${var.mongod_port}"
+//  }
+//}
+#TODO uncomment this block to return terraform with provisioners
 
 resource "google_compute_instance" "db" {
   name         = "reddit-db${count.index}"
@@ -43,17 +44,17 @@ resource "google_compute_instance" "db" {
     private_key = "${file(var.private_key_path)}"
   }
 
-  provisioner "file" {
-    content     = "${data.template_file.mongod_conf.rendered}"
-    destination = "/tmp/mongod.conf"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo mv /tmp/mongod.conf /etc/mongod.conf",
-      "sudo systemctl restart mongod",
-    ]
-  }
+//  provisioner "file" {
+//    content     = "${data.template_file.mongod_conf.rendered}"
+//    destination = "/tmp/mongod.conf"
+//  }
+//  provisioner "remote-exec" {
+//    inline = [
+//      "sudo mv /tmp/mongod.conf /etc/mongod.conf",
+//      "sudo systemctl restart mongod",
+//    ]
+//  }
+#TODO uncomment this block to return terraform with provisioners
 }
 
 resource "google_compute_firewall" "firewall_mongo" {
