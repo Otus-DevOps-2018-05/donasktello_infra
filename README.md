@@ -199,23 +199,3 @@ flag, but this is not recommended.
 
 ### Дополнительное задание *:
 - Адаптирован dynamic inventory под новые реалии
-## Д/3 №10
-- Установлен VirtualBox и Vagrant
-- В Vagrantfile описана инфраструктура app и db
-- Vagrantfile расширен описанием провижинеров для db хоста
-- Расширен плейбук site.yml дополнительным плейбуков для установки python перед установкой всей конфигурации
-- роль db расширена установкой mongo, для обеспечевния полного цикла жизни, включая установку и конфигурацию
-- проверен провижинер db `vagrant provision dbserver` на установленном хосте
-- роль app расширена установкой ruby и вынесением файла конфигурации puma
-- проверен провижинер db `vagrant provision appserver` на установленном хосте
-- Изучена специфика динамического инвентори(генерирует Vagrant), см. `cat .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory`
-- Параметризован пользователь в роли app
-- Установлен virtualenv и virtualenvwrapper
-- В созданной venv среде установлена Molecule(для создания тестировочных машин), TestInfra(для написания тестов)
-- Создана заготовка для тестов с помощью `molecule init scenario --scenario-name default -r db -d vagrant`
-- Добавлено несколько тестов, при использовании модуля TestInfra
-- Созданы VM для проверки ролей `molecule create`
-- Применен плейбук(db) для проверки, сгенерированный molecule `molecule converge`
-- Тесты проверены `molecule verify`
-- Дописаны тесты(модуль TestInfra) для проверки прослушки порта 27017(МонгоДБ)
-- Шаблоны пакера адаптированы под использование ролей db и app, соответственно
